@@ -120,7 +120,7 @@ const EmployerDashboard = () => {
         localStorage.setItem('applications', JSON.stringify(updatedApplications));
     };
 
-    // Pagination Logic
+   
     const totalPages = Math.ceil(jobApplications.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
     const currentApplications = jobApplications.slice(startIndex, startIndex + itemsPerPage);
