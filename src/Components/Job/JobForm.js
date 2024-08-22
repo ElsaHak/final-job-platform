@@ -63,7 +63,7 @@ const JobForm = ({ onSubmit, onCancel, initialJob, isEditing, onDelete }) => {
     };
 
     const handleSalaryChange = (e) => {
-        const value = e.target.value.replace(/[^0-9.]/g, ''); // Remove non-numeric characters
+        const value = e.target.value.replace(/[^0-9.]/g, ''); 
         setJobSalary(value);
     };
 
