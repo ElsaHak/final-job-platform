@@ -7,6 +7,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import EmployerDashboard from './Components/Dashboard/EmployerDashboard';
 import JobSeekerDashboard from './Components/Dashboard/JobSeekerDashboard';
+
+
 import PrivateRoutes from './Components/Common/PrivateRoutes';
 
 const App = () => {
@@ -18,17 +20,14 @@ const App = () => {
                         <Route path="/" element={<Home />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
+                        
                         <Route 
                             path="/employer-dashboard" 
-                            element={
-                                <PrivateRoutes component={EmployerDashboard} />
-                            }
+                            element={<PrivateRoutes element={EmployerDashboard} />}
                         />
                         <Route 
                             path="/jobseeker-dashboard" 
-                            element={
-                                <PrivateRoutes component={JobSeekerDashboard} />
-                            }
+                            element={<PrivateRoutes element={JobSeekerDashboard} />}
                         />
                         <Route path="*" element={<div>404 Not Found</div>} />
                     </Routes>

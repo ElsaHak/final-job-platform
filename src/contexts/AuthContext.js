@@ -1,5 +1,6 @@
-import React, { createContext, useState, useEffect } from 'react';
-import { getItem, setItem, removeItem } from '../utils/Storage';
+ import React, { createContext, useState, useEffect } from 'react';
+ import { getItem, setItem, removeItem } from '../utils/Storage';
+
 
 export const AuthContext = createContext();
 
@@ -29,3 +30,5 @@ export const AuthProvider = ({ children }) => {
         </AuthContext.Provider>
     );
 };
+
+

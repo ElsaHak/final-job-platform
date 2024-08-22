@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+
+// // //
+
+
+import React, { useState, useContext } from 'react';
 import { Box, Button, Input, Stack, useToast, FormControl, FormLabel, Text, Flex, Image } from '@chakra-ui/react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthContext'; 
 import loginImage from '../assets/login.png';
 
 const Login = () => {
@@ -9,10 +14,10 @@ const Login = () => {
     const toast = useToast();
     const navigate = useNavigate();
     const location = useLocation();
+    const { login } = useContext(AuthContext); 
 
-   
     const params = new URLSearchParams(location.search);
-    const role = params.get('role') || 'job_seeker'; 
+    const role = params.get('role') || 'job_seeker';
 
     const handleLogin = () => {
         if (!email || !password) {
@@ -25,12 +30,12 @@ const Login = () => {
             return;
         }
 
-        // Fetch users from localStorage
         const users = JSON.parse(localStorage.getItem('users')) || [];
-        // Find the user with the provided email, password, and role
         const user = users.find(user => user.email === email && user.password === password && user.role === role);
 
         if (user) {
+            login(user); // Use the login function to set the user in context
+
             toast({
                 title: "Logged in successfully.",
                 status: "success",
@@ -38,9 +43,6 @@ const Login = () => {
                 isClosable: true,
             });
             navigate(role === 'employer' ? '/employer-dashboard' : '/jobseeker-dashboard');
-
-         
-
         } else {
             toast({
                 title: "Invalid email or password.",
@@ -67,7 +69,6 @@ const Login = () => {
                 borderRadius="lg"
                 overflow="hidden"
             >
-               
                 <Box flex="1" display={{ base: "none", md: "block" }}>
                     <Image
                         src={loginImage}
@@ -77,7 +78,6 @@ const Login = () => {
                     />
                 </Box>
 
-          
                 <Box
                     flex="1"
                     p={8}
